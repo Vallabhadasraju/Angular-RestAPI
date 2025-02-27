@@ -1,0 +1,38 @@
+<title>{{ title }}</title>
+<div class="container-box">
+  <h3 class="header-style">Post-Office Details</h3>
+  <div class="container-fluid">
+    <form [formGroup]="newForm">
+      <div class="form-group">
+        <label>Pincode</label>
+        <input type="text" class="form-control" formControlName="fieldVal" />
+      </div>
+      <button class="btn btn-primary" type="submit" (click)="onSearch()">
+        Search
+      </button>
+    </form>
+  </div>
+
+  <div class="container-fluid" style="white-space: pre">
+    <table>
+      <tr *ngIf="requestFinished === true && requestValid === true">
+        <th>PostOffice Name</th>
+        <th>Branch Type</th>
+        <th>Circle</th>
+        <th>State</th>
+        <th>District</th>
+      </tr>
+      <tr *ngFor="let postofficeDetail of postofficeDetails">
+        <td>{{ postofficeDetail.Name }}</td>
+        <td>{{ postofficeDetail.BranchType }}</td>
+        <td>{{ postofficeDetail.Circle }}</td>
+        <td>{{ postofficeDetail.State }}</td>
+        <td>{{ postofficeDetail.District }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="header-style" *ngIf="requestValid === false">
+    {{ errorMessage }}
+  </div>
+</div>
